@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Files for Reference</title>
+</head>
+<body>
+<h1>Files for Reference: <span th:text="${reference}"></span></h1>
+<ul>
+    <li th:each="uri : ${uris}">
+        <a th:href="${uri}" th:text="${uri}"></a>
+    </li>
+</ul>
+</body>
+</html>
