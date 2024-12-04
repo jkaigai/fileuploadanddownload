@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" >
+<head>
+    <meta charset="ISO-8859-1">
+    <title>File Upload Form</title>
+</head>
+<script>
+        const fileInput = document.getElementById('files');//choose button
+        const fileList = document.getElementById('fileList');//unordered list
+        const formData = new FormData();
+
+        // Track selected files
+        fileInput.addEventListener('change', function (event) {
+        const files = Array.from(fileInput.files);
+        files.forEach(file => {
+        // Check if the file is already in the FormData
+        if (!formData.has(file.name)) {
+        formData.append('files', file);
+
+        // Update the display list
+        const li = document.createElement('li');
+        li.textContent = file.name;
+        li.dataset.fileName = file.name; // Store file name for reference
+        fileList.appendChild(li);
+    }
+    });
+
+        // Clear the file input to allow adding more files
+        fileInput.value = '';
+    });
+
+    //     // Handle form submission
+    //     const uploadForm = document.getElementById('uploadForm');
+    //     uploadForm.addEventListener('submit', function (event) {
+    //     event.preventDefault(); // Prevent default form submission
+    //
+    //     // Perform the upload
+    //     fetch(this.action, {
+    //     method: 'POST',
+    //     body: formData,
+    // })
+    //     .then(response => response.text())
+    //     .then(data => {
+    //     alert('Files uploaded successfully!');
+    // })
+    //     .catch(error => {
+    //     console.error('Error uploading files:', error);
+    // });
+    // });
+</script>
+
+<style>
+    input[type=file], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #1affff;
+    }
+
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 45%;
+        cursor: pointer;
+    }
+
+    .button4 {
+        border-radius: 10px;
+    }
+
+    div {
+        border-radius: 5px;
+        background-color: #a6a6a6;
+        padding: 10px;
+        width: 50%;
+        margin: auto;
+    }
+</style>
+<body>
+<form method="POST" enctype="multipart/form-data" th:action="@{/upload_file}">
+    <div>
+        <div>
+            <label for="reference">Reference:</label>
+            <input type="text" name="reference" required/>
+            <input type="file" id="files" name="fileInput" multiple />
+            <ul id="fileList"></ul>
+            <button class="button button4" type="submit">
+                Upload
+            </button>
+        </div>
+</form></body>
+</html>
