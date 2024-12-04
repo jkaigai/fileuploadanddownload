@@ -41,7 +41,7 @@ public class FileConsumerController {
     public ResponseEntity<?> downloadFile(@PathVariable("fileCode") String fileCode) {
         FileDownloadUtil downloadUtil = new FileDownloadUtil();
 
-        Resource resource = null;
+        Resource resource ;
         try {
             resource = downloadUtil.getFileAsResource(fileCode);
         } catch (IOException e) {

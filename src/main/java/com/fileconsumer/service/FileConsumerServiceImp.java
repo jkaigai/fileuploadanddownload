@@ -14,12 +14,6 @@ public class FileConsumerServiceImp implements FileConsumerServiceI {
     FileConsumerServiceImp(FileConsumerRepository fileConsumerRepository) {
         this.fileConsumerRepository = fileConsumerRepository;
     }
-
-    @Override
-    public List<File> getAllFiles() {
-        // fetch all the files form database
-        return fileConsumerRepository.findAll();
-    }
     public void saveAllFilesList(List<File> fileList) {
         // Save all the files into database
         fileConsumerRepository.saveAll(fileList);
